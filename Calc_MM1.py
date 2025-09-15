@@ -5,19 +5,23 @@
 # L = λ · W
 # Lq = λ · Wq
 
+n=int(input("Numero de questoes: "))
+i = 0
+while(i < n):
+    a = float(input("Insira o valor de λ: "))
+    u = float(input("Insira o valor de μ: "))
+ 
+    p=a/u
+    Wx = 1 / (u / a)
+    Wq = p / (u-a)
+    Lx = a * Wx
+    Lq = a * Wq
 
-while(i < 5):
-a = float(input("Insira o valor de λ: "))
-u = float(input("Insira o valor de μ: "))
+    print("\t Calculo ",i)
+    print(f"p = {p:.2f}")
+    print(f"W = {Wx:.2f}")
+    print(f"Wq = {Wq:.2f}")
+    print(f"L = {Lx:.2f}")
+    print(f"Lq = {Lq:.2f}")
 
-p=a/u
-Wx = 1 / (u / a)
-Wq = p / (u-a)
-Lx = a * Wx
-Lq = a * Wq
-
-print(f"p = {p:.2f}")
-print(f"W = {Wx:.2f}")
-print(f"Wq = {Wq:.2f}")
-print(f"L = {Lx:.2f}")
-print(f"Lq = {Lq:.2f}")
+    i+=1

@@ -30,9 +30,9 @@ print(f"\t Tempo médio de atendimento (min): {tmp_medio_atendimento:.2f} minuto
 print("\n RESULTADOS: ")
 print("\t Taxa de chegada (λ):)",taxa_chegada ,"clientes/minuto")
 print(f"\t Taxa de atendimento (μ): {taxa_atendimento:.2f} clientes/minuto")
-print(f"\t Taxa de Ocupação (ρ): {taxa_ocupacao:.2f} clientes/minuto")
 if taxa_ocupacao > 1:
     print(f"\t Taxa de Ocupação (ρ): {taxa_ocupacao:.2f}\n SISTEMA SOBRECARREGADO")
+else: print(f"\t Taxa de Ocupação (ρ): {taxa_ocupacao:.2f} clientes/minuto")
 
 
 # Criando o gráfico de linhas para as chegadas por minuto

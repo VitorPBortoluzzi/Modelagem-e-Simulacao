@@ -31,6 +31,9 @@ print("\n RESULTADOS: ")
 print("\t Taxa de chegada (λ):)",taxa_chegada ,"clientes/minuto")
 print(f"\t Taxa de atendimento (μ): {taxa_atendimento:.2f} clientes/minuto")
 print(f"\t Taxa de Ocupação (ρ): {taxa_ocupacao:.2f} clientes/minuto")
+if taxa_ocupacao > 1:
+    print(f"\t Taxa de Ocupação (ρ): {taxa_ocupacao:.2f}\n SISTEMA SOBRECARREGADO")
+
 
 # Criando o gráfico de linhas para as chegadas por minuto
 plt.plot(range(1, 31), chegada_p_minuto, marker='o', linestyle='-', color='b')
@@ -77,8 +80,10 @@ print(f"\t Tempo médio de atendimento (min): {tmp_medio_atendimento_sm:.2f} min
 print("\nRESULTADOS: ")
 print(f"\t Taxa de chegada (λ): {taxa_chegada_sm:.2f} clientes/minuto")
 print(f"\t Taxa de atendimento (μ): {taxa_atendimento_sm:.2f} clientes/minuto")
-print(f"\t Taxa de Ocupação (ρ): {taxa_ocupacao_sm:.2f}")
 
+if taxa_ocupacao > 1:
+    print(f"\t Taxa de Ocupação (ρ): {taxa_ocupacao:.2f}\n SISTEMA SOBRECARREGADO")
+else: print(f"\t Taxa de Ocupação (ρ): {taxa_ocupacao_sm:.2f}")
 # gráfico de chegadas por minuto
 plt.plot(range(1, 31), chegada_p_minuto_sm, marker='o', linestyle='-', color='g')
 plt.title("Chegadas por Minuto (18h00 às 18h30) - Supermercado")

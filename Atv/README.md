@@ -1,24 +1,60 @@
-Vitor P. Bortoluzzi
+=============================
+Trabalho Avaliativo - Erlang C
+Vítor Possebon Bortoluzzi
+=============================
 
-===================
+Forma de implementação:
+-----------------------
+Escolhi a Opção B — várias funções, cada uma responsável por uma métrica.
+Isso torna o código modular, fácil de ler, testar e manter. 
+Se houver necessidade de corrigir apenas uma fórmula (ex.: Wq), só é preciso
+ajustar a função correspondente.
 
-Escolhi o método de múltiplas Funções: (B) Várias funções (uma por métrica, ou por grupo de métricas).
+Como usar:
+----------
+Ao executar `a.py`, o usuário deve escolher o modo de entrada:
 
-Como motivo a modularidade e a facil manutenção do código;
+1) Entrar com "a" (Erlangs) e "c" (nº de servidores).
+   - Entradas:
+       * a: tráfego oferecido (Erlangs = λ/μ)
+       * c: número de servidores (inteiro > 0)
+   - Saídas:
+       * P(wait): probabilidade de espera
+       * ρ: taxa de utilização do sistema
 
-Legibilidade e manutenção: cada função tem uma responsabilidade clara;
-Reuso: Funções podem ser chamadas em outros contextos sem reescrever código;
-Testabilidade:Funções podem ser testadas individualmente;
+2) Entrar com λ, μ e c.
+   - Entradas:
+       * λ: taxa de chegadas (clientes/unidade de tempo)
+       * μ: taxa de atendimento por servidor (clientes/unidade de tempo)
+       * c: número de servidores (inteiro > 0)
+   - Saídas:
+       * P(wait): probabilidade de espera
+       * ρ: taxa de utilização
+       * Wq: tempo médio de espera na fila (mesma unidade de λ e μ)
+       * Lq: número médio de clientes na fila
+       * W: tempo médio no sistema
+       * L: número médio de clientes no sistema
 
-O código foi dividido em funções:
-Cálculos:
-    erlang_c(a,c) --> Retorna P(wait);                                          erlang_c(a: float, c: int) retorna float;
-    utilizacao(a,c) --> calcula p(utilização por servidor);                     utilizacao(a: float, c: int) retorna float;
-    tempo_espera_fila(pwait, lam, mu, c) --> retorna Wq;                        tempo_espera_fila(pwait: float, lam: float, mu: float, c:int) retorna float;
-    clientes_fila(mu, wq) --> retorna Lq;                                       clientes_fila(lam: float, wq: float) retorna float;
-    tempo_sistema(wq, mu) --> retorna W;                                        tempo_sistema(wq: float, mu: float) retorna float;
-    clientes_sistema(lam, w) --> retorna L;                                     clientes_sistema(lam: float, w: float) retorna float;
-Entradas:
-    ler_float(msg) e ler_int(msg) padronizam leitura e validação de dados;
-Principal:
-    main() integra tudo e guia a interação com o usuário;
+Estabilidade:
+-------------
+O sistema é estável se a < c (ou ρ < 1). 
+Caso a ≥ c, o programa considera o sistema instável e retorna:
+    P(wait) = 1
+    Wq, W, Lq e L → ∞
+
+Validações:
+-----------
+- c deve ser > 0
+- μ deve ser > 0
+- Entradas não numéricas são rejeitadas
+- Caso o sistema seja instável, uma mensagem é mostrada e as métricas 
+  viram infinitas.
+
+Unidades:
+---------
+- λ: clientes/unidade de tempo
+- μ: atendimentos/unidade de tempo
+- a: Erlangs (λ/μ)
+- Wq e W: unidade de tempo
+- Lq e L: número de clientes
+- ρ: proporção de utilização (0 ≤ ρ ≤ 1)
